@@ -13,8 +13,6 @@ output:
 To submit your predictions using `mosqlient` we will use the function 
 `upload_prediction`. This function has the following parameters: 
 
-**Tenho que conferir depois se essa tabela bate com o que está na implementação da função:**  
-
 | Field | Type | Description | Example |
 | :--- | :--- | :--- | :--- |
 | api_key | string | Your personal API authentication key. | "YOUR_API_KEY" |
@@ -31,7 +29,7 @@ To submit your predictions using `mosqlient` we will use the function
  
 **About the Location Data (The `adm` fields):** 
 
-You only need to fill out the geographic level your model specifically targets. Leave the others as null. E
+You only need to fill out the geographic level your model specifically targets. Leave the others as null.
 * State-level model: Fill adm_1, set adm_2 and adm_3 to null.
 * City-level model: Fill adm_2, set adm_1 and adm_3 to null.
 
@@ -106,8 +104,8 @@ mosq$upload_prediction(
                 description = description,
                 commit = commit,
                 adm_1 = adm_1,
-                prediction = prediction, 
-                published = published 
+                published = published,
+                prediction = prediction
 )
 ```
 
