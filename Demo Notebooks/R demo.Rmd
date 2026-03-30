@@ -15,7 +15,7 @@ To submit your predictions using `mosqlient` we will use the function
 
 | Field | Type | Description |
 | :--- | :--- | :--- | 
-| api_key | string | Your personal API authentication key. | "YOUR_API_KEY" |
+| api_key | string | Your personal API authentication key. | 
 | repository | str | Model repository. Format: "{owner or org}/{name}" | 
 | disease |  str | Disease code (ICD-10); "A90": Dengue, "A92.0": Chikungunya, "A92.5: Zika  |
 | description | str or None | Prediction description |
