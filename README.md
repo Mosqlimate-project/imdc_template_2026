@@ -26,7 +26,12 @@ Now let's move on to setting up the GitHub repository for your submission.
 ## Using the GitHub template for the IMDC submission
 This github repository should be used as a template for developing your submission for the 2026 IMDC. To get the details about the challenge, please read carefully [IMDC rules](https://sprint.mosqlimate.org/instructions/). 
 
-If you have a GitHub account, you can create a new public repository clicking the (+) button on the top right of this page. In the following page, you can create the repo under your user as shown below, make sure to use our template as indicated by the red arrow in the figure below. You can name your repository any way you like, we recommend a name easy to remember!
+If you have a GitHub account, you can create a new public repository clicking the (+) button on the top right of this page. In the following page, you can create the repo under your user as shown below, make sure to use our template as indicated by the red arrow in the figure below.
+
+ <span style="color:red"><strong>You should name your repository following this pattern: 3rd_imdc_{institution}_{team_name}
+* All letters must be lowercase.
+* In {institution}, include only the acronym of the team leader’s institution.
+* In {team_name}, you may choose any name you like, but it must contain only lowercase letters </strong></span>!
 
 ![create repo](/img/create_repo.png)
 
@@ -104,13 +109,11 @@ If your GitHub/GitLab account is already connected, the screen below will appear
 
 ![](/img/step3_sub_model_p2.png)
 
-In this step, fill in the disease your model predicts (field `disease`), the temporal resolution (field `time resolution`), and the spatial resolution (field `ADM level`). Then, select the category that best describes your model’s methodology. Models for the challenge may be at the state or municipal level; however, **the temporal resolution must be weekly**. Finally, indicate that your model will participate in IMDC 2026 and click continue.
+In this step, fill the temporal resolution (field `time resolution`) and select the category (field `model_category`) that best describes your model’s methodology. Models for the challenge **must have a weekly temporal resolution**. Finally, indicate that your model will participate in IMDC 2026 and click continue.
 
 ![](/img/step4_sub_model.png)
 
 The next page allows you to review the information provided. If everything is correct, simply click `Confirm`.
-
-![](/img/step5_sub_model.png)
 
 **Done! Your model has been successfully submitted. ;)**
 
@@ -158,7 +161,7 @@ To install the library for Python, from the OS terminal type:
 $ pip install -U mosqlient
 ```
 
-Ensure your Python version is 3.10 or higher to install the latest version of the package (2.0.3).
+Ensure your Python version is 3.10 or higher to install the latest version of the package (2.1).
 
 for R:
 
