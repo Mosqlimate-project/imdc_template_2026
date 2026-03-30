@@ -1,5 +1,5 @@
 ---
-title: "2025 Infodengue Sprint"
+title: "3rd IMDC template"
 output:
   html_document:
     df_print: paged
@@ -13,25 +13,27 @@ output:
 To submit your predictions using `mosqlient` we will use the function 
 `upload_prediction`. This function has the following parameters: 
 
-| Field | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
+| Field | Type | Description |
+| :--- | :--- | :--- | 
 | api_key | string | Your personal API authentication key. | "YOUR_API_KEY" |
-| repository | string | The model's repository (owner/name). | "eduardocorrearaujo/imdc_2026" |
-| description | string / null | A brief description of your prediction. | "My baseline model" |
-| commit | string | Git commit hash of the code version used. | "3d1d2cd016fe38b6e7d517f..." |
-| case_definition| string | Set to either "reported" or "probable".| "reported" |
-| published | boolean | Set to true to make it publicly visible. | true |
-| adm_0 | string | Country ISO code (Defaults to "BRA"). | "BRA" |
-| adm_1 | integer | State geocode. | 33 (for RJ) |
-| adm_2 | integer | City geocode (IBGE). | 3304557 |
-| adm_3 | integer | Sub-municipality geocode. | null |
-| prediction | pd.DataFrame | pandas DataFrame containing the columns: "date", "pred", "lower_95","lower_90", "lower_80", "lower_50", "upper_50", "upper_80", "upper_90", "upper_95"| [{...}, {...}] |
+| repository | str | Model repository. Format: "{owner or org}/{name}" | 
+| disease |  str | Disease code (ICD-10); "A90": Dengue, "A92.0": Chikungunya, "A92.5: Zika  |
+| description | str or None | Prediction description |
+| commit | str | Git commit hash to lastest version of Prediction's code in the Model's repository |
+| case_definition | str | "reported" or "probable". The case definition used for the prediction data. |
+| published | bool _(True)_ | Whether this prediction is visible to the public. |
+| adm_level | int (0, 1, 2, 3) | Administrative level, options: 0, 1, 2, 3 (National, State, Municipal, Sub-municipal) |
+| adm_0 | str _(BRA)_ | Country isocode. Default: "BRA" |
+| adm_1 | int _(UF)_ | State geocode. Example: 33 for RJ |
+| adm_2 | int _(IBGE)_ | City geocode. Example: 3304557 |
+| adm_3 | int _(IBGE)_ | Sub-municipality geocode. |
+| prediction | pd.DataFrame | pandas DataFrame containing the columns: "date", "pred", "lower_95","lower_90", "lower_80", "lower_50", "upper_50", "upper_80", "upper_90", "upper_95" |
  
 **About the Location Data (The `adm` fields):** 
 
-You only need to fill out the geographic level your model specifically targets. Leave the others as null.
-* State-level model: Fill adm_1, set adm_2 and adm_3 to null.
-* City-level model: Fill adm_2, set adm_1 and adm_3 to null.
+Fill only the geographic level that your predictions refer to; leave all other levels as null.
+* State-level model: Set `adm_level = 1`, fill in `adm_1`, and set `adm_2` and `adm_3` to null.
+* City-level model: Set `adm_level = 2`, fill in `adm_2`, and set `adm_1` and `adm_3` to null.
 
 **Understanding the columns of the prediction dataframe:**
 * `date`: The forecast target date (YYYY-MM-DD).
@@ -52,6 +54,7 @@ Import the necessary librarys:
 ```{r}
 library(reticulate)
 library(data.table)
+library(dotenv)
 ```
 Config python: 
 ```{r}
@@ -61,14 +64,18 @@ py_config()
 Get your API_KEY:
 
 ```{r}
-api_key = "YOUR_API_KEY"
+load_dot_env(".env")
+
+# Access the environment variable
+api_key <- Sys.getenv("API_KEY")
 ```
+
 
 Now it is time to install the mosqlient
 
 ```{r}
 # un/comment if you need to install them
-py_require(c("mosqlient"))
+py_require(c("epiweeks","python-dotenv", "mosqlient"))
 mosq <- import("mosqlient")
 ```
 
@@ -77,7 +84,7 @@ mosq <- import("mosqlient")
 The prediction below is a prediction from the last IMDC edition. It will be used here as an example of how submit a prediction.
 
 ```{r, results='hide'}
-prediction <- fread("example_prediction.csv")
+prediction <- fread("example_prediction2.csv")
 head(prediction)
 ```
 
@@ -86,13 +93,16 @@ head(prediction)
 Fill the necessary parameters: 
 
 ```{r}
-repository <- 'eduardocorrearaujo/example_imdc_2026_model' # fill with your repository name 
-description <- 'Example of submitting predictions in the Python tutorial'
-commit <- '59d05c7d391273bd0321a94e2509863c1c9f9113'
+repository <- 'eduardocorrearaujo/3rd_imdc_emap_lstm' # fill with your repository name 
+description <- 'Example of submitting predictions in the R tutorial'
+commit <- 'cafe6f3aa759fcdd569952eeeea462814870d678'
+disease <- 'A90' # dengue prediction
+adm_level <- 1 # state level prediction
 adm_1 <- 35 # example for SP
 adm_2 <- NULL
 case_definition <- 'probable' # The IMDC uses probable cases 
 published <- T
+
 ```
 
 Run the code below to registry the forecast the prediction:
@@ -103,6 +113,9 @@ mosq$upload_prediction(
                 repository = repository,
                 description = description,
                 commit = commit,
+                disease=disease,
+                case_definition=case_definition,
+                adm_level = adm_level,
                 adm_1 = adm_1,
                 published = published,
                 prediction = prediction
@@ -111,5 +124,5 @@ mosq$upload_prediction(
 
 After saving, it will appear in the “Predictions” tab of your model: 
 
-![](../img/example_submission.png)
+![](../img/example_submission2.png)
 For more details check the [mosqlient documentation](https://mosqlimate-client.readthedocs.io/en/latest/tutorials/API/registry/). If you run into dificulties, please reach out fo help at our [discord server](https://discord.gg/yqtgW4TC)
