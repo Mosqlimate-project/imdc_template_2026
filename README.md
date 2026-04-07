@@ -24,7 +24,7 @@ You can access the challenge data via the API. However, note that the IMDC forec
 Now let's move on to setting up the GitHub repository for your submission.
 
 ## Using the GitHub template for the IMDC submission
-This github repository should be used as a template for developing your submission for the 2026 IMDC. To get the details about the challenge, please read carefully [IMDC rules](https://sprint.mosqlimate.org/instructions/). 
+This github repository should be used as a template for developing your submission for the 2026 IMDC. To get the details about the challenge, please read carefully [IMDC rules](https://sprint.mosqlimate.org/instructions/).
 
 If you have a GitHub account, you can create a new public repository clicking the (+) button on the top right of this page. In the following page, you can create the repo under your user as shown below, make sure to use our template as indicated by the red arrow in the figure below.
 
@@ -79,7 +79,7 @@ How are your prediction intervals computed?
 
 ## Step-by-step tutorial on how to register your model
 
-Now that your repository is set up, and after providing the required information about your model in the repository README, make sure that all code related to your model is committed to it. <span style="color:red"><strong>If you want to register more than one model, be sure to repeat the step above for each one, so that they are in separate repositories.</strong></span>
+Now that your repository is set up, and after providing the required information about your model in the repository README, make sure that all code related to your model is committed to it. <span style="color:red"><strong>If you want to register more than one model, be sure to repeat the step above for each one, so that they are in separate repositories.</strong></span> The video tutorial for model submission is available [here](https://www.youtube.com/watch?v=0K3RfJhOYyM&list=PLh4FLfhFN5irN_IoZvy4c3cf4ZWrSWrwF&index=4).
 
 The model is registered through the platform’s interface. The first step, assuming you are already logged into the platform, is to click on the `Models` section in the navigation bar. This section is indicated by the arrow in the figure below:
 
@@ -174,4 +174,4 @@ If you are an R user, make sure you have the R kernel installed in your Jupyter 
 
 After this you can just open the notebooks indicated below and follow the instructions in them.
 
-Follow the [R demo rmd](/Demo%20Notebooks/R%20demo.Rmd) or [Python demo notebook](/Demo%20Notebooks/Python%20demo.ipynb) to learn of the essential steps you must follow to complete a submission of your work. For more details check the [mosqlient documentation](https://mosqlimate-client.readthedocs.io/en/latest/tutorials/API/registry/). If you run into dificulties, please reach out fo help at our [discord server](https://discord.gg/yqtgW4TC).
+Follow the [R demo rmd](/Demo%20Notebooks/R%20demo.Rmd) or [Python demo notebook](/Demo%20Notebooks/Python%20demo.ipynb) to learn of the essential steps you must follow to complete a submission of your work. For more details check the [mosqlient documentation](https://mosqlimate-client.readthedocs.io/en/latest/tutorials/API/registry/).  Video tutorials for prediction submission are available here: one for [R](https://www.youtube.com/watch?v=57hM-dVY4hA&list=PLh4FLfhFN5irN_IoZvy4c3cf4ZWrSWrwF&index=3) and another for [Python](https://www.youtube.com/watch?v=YorYQ6phAfw&list=PLh4FLfhFN5irN_IoZvy4c3cf4ZWrSWrwF&index=2). If you run into dificulties, please reach out fo help at our [discord server](https://discord.gg/yqtgW4TC). 
